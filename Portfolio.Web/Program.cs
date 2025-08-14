@@ -4,7 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //IOC Contanier
-builder.Services.AddScoped<PortfolioContext>();
+//builder.Services.AddScoped<PortfolioContext>(); daha doðrusu alt tarafta
+builder.Services.AddDbContext<PortfolioContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
