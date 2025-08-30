@@ -1,0 +1,79 @@
+﻿@model List<UserMessage>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Durum</th>
+                        <th style="width: 25%;">Gönderen</th>
+                        <th style="width: 40%;">Konu</th>
+                        <th style="width: 25%;" class="text-end">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var message in Model)
+                    {
+                        <tr id="message-row-@message.UserMessageId">
+                            <td>
+                                @if (message.IsRead)
+                                {
+                                    <span class="badge bg-success" id="status-@message.UserMessageId">Okundu</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark" id="status-@message.UserMessageId">Okunmadı</span>
+                                }
+                            </td>
+                            <td>@message.Name</td>
+                            <td>@message.Subject</td>
+                            <td class="text-end">
+                                <button class="btn btn-info btn-sm detail-btn" data-message-id="@message.UserMessageId">
+                                    <i class="fas fa-eye"></i> Detay
+                                </button>
+                                <a asp-action="DeleteMessage" asp-route-id="@message.UserMessageId" class="btn btn-danger btn-sm" onclick="return confirm('Bu mesajı silmek istediğinizden emin misiniz?');">
+                                    <i class="fas fa-trash-alt"></i> Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="messageModalContent">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('.detail-btn').on('click', function () {
+                var messageId = $(this).data('message-id');
+                var url = '/Message/DetailMessage?id=' + messageId;
+
+                $('#messageModalContent').load(url, function () {
+                    $('#messageModal').modal('show');
+
+                    var statusBadge = $('#status-' + messageId);
+                    if(statusBadge.hasClass('bg-warning')){
+                        statusBadge.removeClass('bg-warning text-dark').addClass('bg-success').text('Okundu');
+                    }
+                });
+            });
+        });
+    </script>
+}
+

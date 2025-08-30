@@ -1,0 +1,34 @@
+﻿@model UserMessage
+@*
+    message details partial views
+*@
+
+@if (Model != null)
+{
+    <div class="modal-header">
+        <h5 class="modal-title" id="messageModalLabel">@Model.Subject</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+        <dl class="row">
+            <dt class="col-sm-3">Gönderen:</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">E-posta:</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Tarih:</dt>
+            <dd class="col-sm-9">@DateTime.Now.ToShortDateString()</dd>
+        </dl>
+        <hr>
+        <h6>Mesaj İçeriği:</h6>
+        <div class="p-3 bg-light rounded border">
+            <p style="white-space: pre-wrap;">@Model.MessageBody</p>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+    </div>
+}

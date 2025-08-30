@@ -22,6 +22,14 @@ namespace Portfolio.Web.Controllers
                 ? context.Testimonials.Average(x => x.Review).ToString("0.0")
                 : "Henüz Değerlendirme Yapılmadı";
             ViewBag.reviewMax = context.Testimonials.OrderByDescending(x=>x.Review).Select(x => x.Name).FirstOrDefault();
+            ViewBag.testiCount = context.Testimonials.Count();
+            ViewBag.lastProject = context.Projects.OrderByDescending(x=>x.ProjectId).Select(x=>x.ProjectName).FirstOrDefault();
+            ViewBag.readMessage=context.UserMessages.Count(x=>x.IsRead==true);
+            ViewBag.mostCategory=context.Projects
+                .GroupBy(x=>x.CategoryId)
+                .OrderByDescending(y=>y.Count())
+                .Select(z=>z.Key)
+                .FirstOrDefault();
             return View();
         }
     }

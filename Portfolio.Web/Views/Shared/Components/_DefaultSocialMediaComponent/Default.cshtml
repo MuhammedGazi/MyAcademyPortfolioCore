@@ -1,0 +1,11 @@
+﻿@model List<SocialMedia>
+@*
+    _Default SocialMedia Component
+*@
+
+<div class="header-social-links">
+@foreach(var item in Model)
+{
+        <a href="@item.Url" class="@item.Name"><i class="@item.Icon"></i></a>
+}
+</div>

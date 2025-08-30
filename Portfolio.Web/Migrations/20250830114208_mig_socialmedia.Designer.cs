@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portfolio.Web.Context;
 
@@ -11,9 +12,11 @@ using Portfolio.Web.Context;
 namespace Portfolio.Web.Migrations
 {
     [DbContext(typeof(PortfolioContext))]
-    partial class PortfolioContextModelSnapshot : ModelSnapshot
+    [Migration("20250830114208_mig_socialmedia")]
+    partial class mig_socialmedia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,31 +265,6 @@ namespace Portfolio.Web.Migrations
                     b.HasKey("SkillId");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("Portfolio.Web.Entities.SocialMedia", b =>
-                {
-                    b.Property<int>("SocialMediaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SocialMediaId"));
-
-                    b.Property<string>("Icon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SocialMediaId");
-
-                    b.ToTable("socialMedias");
                 });
 
             modelBuilder.Entity("Portfolio.Web.Entities.Testimonial", b =>
