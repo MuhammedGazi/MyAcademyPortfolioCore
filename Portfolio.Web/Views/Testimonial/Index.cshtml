@@ -1,0 +1,40 @@
+﻿@model List<Testimonial>
+@{
+    ViewData["Title"] = "Referans Listesi";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h1>Referanslar</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Referans Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad Soyad</th>
+            <th>Unvan</th>
+            <th>Resim Yolu</th>
+            <th>Yorum</th>
+            <th>Puan (1-5)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.ImageUrl)</td>
+                <td>@Html.DisplayFor(modelItem => item.Comment)</td>
+                <td>@Html.DisplayFor(modelItem => item.Review)</td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.TestimonialId" class="btn btn-warning btn-sm">Düzenle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TestimonialId" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

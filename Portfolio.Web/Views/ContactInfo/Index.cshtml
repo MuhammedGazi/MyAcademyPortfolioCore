@@ -1,0 +1,42 @@
+﻿@model List<ContactInfo>
+@{
+    ViewData["Title"] = "İletişim Bilgileri";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h1>İletişim Bilgileri</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni İletişim Bilgisi Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Adres</th>
+            <th>Telefon Numarası</th>
+            <th>E-posta</th>
+            <th>Harita URL'si</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>
+                    @(!string.IsNullOrEmpty(item.MapUrl) ?
+                        (item.MapUrl.Length > 30 ? item.MapUrl.Substring(0, 30) + "..." : item.MapUrl)
+                        : "")
+                </td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.ContactInfoId" class="btn btn-warning btn-sm">Düzenle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ContactInfoId" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

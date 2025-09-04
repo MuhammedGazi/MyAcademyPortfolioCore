@@ -1,0 +1,36 @@
+﻿@model ProfileEdirtModel
+@{
+    ViewData["Title"] = "Profil Düzenle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ProfilDetails" method="post">
+            <h4>Genel Bilgiler</h4>
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label">Kullanıcı Adı</label>
+                <input asp-for="UserName" class="form-control" />
+            </div>
+
+            <hr />
+            <h4>Şifre Değiştir (İsteğe Bağlı)</h4>
+            <p class="text-muted">Şifrenizi değiştirmek istemiyorsanız bu alanları boş bırakın.</p>
+
+            <div class="mb-3">
+                <label asp-for="CurrentPassword" class="form-label">Mevcut Şifre</label>
+                <input asp-for="CurrentPassword" type="password" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NewPassword" class="form-label">Yeni Şifre</label>
+                <input asp-for="NewPassword" type="password" class="form-control" />
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+    </div>
+</div>
+

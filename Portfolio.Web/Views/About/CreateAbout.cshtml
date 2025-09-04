@@ -1,0 +1,56 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Yeni Hakkımda Ekle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <hr />
+    <form asp-controller="About" asp-action="CreateAbout" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label">Başlık (Örn: Web Geliştirici & Tasarımcı)</label>
+                    <input asp-for="Title" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label">Görsel URL</label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="WebSite" class="form-label">Web Sitesi</label>
+                    <input asp-for="WebSite" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">E-posta Adresi</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="BirthDate" class="form-label">Doğum Tarihi</label>
+                    <input asp-for="BirthDate" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="City" class="form-label">Şehir</label>
+                    <input asp-for="City" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Graduation" class="form-label">Mezuniyet</label>
+                    <input asp-for="Graduation" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Açıklama</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+        <a asp-action="Index" class="btn btn-secondary">Listeye Geri Dön</a>
+    </form>
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model List<Experience>
+@{
+    ViewData["Title"] = "Deneyim Listesi";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h1>İş Deneyimleri</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Deneyim Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pozisyon</th>
+            <th>Şirket</th>
+            <th>Şehir</th>
+            <th>Başlangıç Yılı</th>
+            <th>Bitiş Yılı</th>
+            <th>Açıklama</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Company)</td>
+                <td>@Html.DisplayFor(modelItem => item.City)</td>
+                <td>@Html.DisplayFor(modelItem => item.StartYear)</td>
+                <td>@Html.DisplayFor(modelItem => item.EndYear)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.ExperienceId" class="btn btn-warning btn-sm">Düzenle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ExperienceId" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
