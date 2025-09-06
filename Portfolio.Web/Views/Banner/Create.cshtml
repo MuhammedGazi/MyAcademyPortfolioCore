@@ -1,0 +1,37 @@
+﻿@model Banner
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<h1>Yeni Banner Oluştur</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+
+            <div class="form-group mb-3">
+                <label asp-for="CoverImageUrl" class="control-label">Kapak Resmi URL'si</label>
+                <input asp-for="CoverImageUrl" class="form-control" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="NameSurname" class="control-label">Ad Soyad</label>
+                <input asp-for="NameSurname" class="form-control" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label">Unvan</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Listeye Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
